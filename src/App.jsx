@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Navbar from '../src/components/Navbar'
 import './App.css'
@@ -11,9 +11,9 @@ function App() {
     <div className='app'>
       <Router>
         <Navbar />
-        <Route path=''>
-
-        </Route>
+        <Routes>
+        <Route path="/" exact />
+        </Routes>
       </Router>
     </div>
   )
