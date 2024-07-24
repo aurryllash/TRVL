@@ -16,7 +16,7 @@ const Button = ({
 
   children ? console.log(children) : console.log('not')
   return (
-    <Link to='/sign' className='btn-mobile'>
+    <Link to='/sign-up' className='btn-mobile'>
         <button 
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}
