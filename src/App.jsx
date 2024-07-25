@@ -1,14 +1,23 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Navbar from '../src/components/Navbar'
 import './App.css'
 import Home from './components/pages/Home'
 import Products from './components/pages/Products';
 import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
-import Futter from './components/Footer';
+import Footer from './components/Footer';
+import Error from './components/pages/Error';
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname])
+
+  return null;
+}
 
 function App() {
 
@@ -16,13 +25,16 @@ function App() {
     <div className='app'>
       <Router>
         <Navbar />
+        <ScrollToTop />
         <Routes>
-          <Route path="/" exact Component={Home} />
-          <Route path="/products"  Component={Products} />
-          <Route path="/services"  Component={Services} />
-          <Route path="/sign-up"  Component={SignUp} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to='/'/>} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path='*' element={ <Error /> } />
         </Routes>
-        <Futter />
+        <Footer />
       </Router>
     </div>
   )
