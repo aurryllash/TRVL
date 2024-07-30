@@ -1,0 +1,42 @@
+.sign-up-container input {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: 400px;
+    margin-top: 10px;
+}
+.sign-up-container input:focus {
+    outline: none;
+}
+.sign-up-container label {
+    font-size: 20px;
+}
+.sign-up-container h1 {
+    font-size: 70px;
+}
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+}
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+@media screen and (max-width: 820px) {
+    .sign-up-container h1 {
+        font-size: 50px;
+    }
+    .sign-up-container input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 350px;
+        /* text-align: center; */
+    }
+}
