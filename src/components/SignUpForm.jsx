@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './SignUpForm.css'
 import Button from './Button'
 
@@ -7,12 +7,21 @@ const MustBeFilledError = () => {
 }
 
 const SignUpForm = () => {
+
     const [error, setError] = useState({
         name: false,
         lastName: false,
         email: false,
         password: false
     })
+    const [isEmpty, setIsEmpty] = useState({
+        name: true,
+        lastName: true,
+        email: true,
+        password: true
+    })
+
+    const [btnDisabled, setBtnDisabled] = useState(false)
 
     const CheckIfIsFilled = (event) => {
         const { name, value } = event.target
@@ -22,7 +31,21 @@ const SignUpForm = () => {
             [name]: value === ''
         }))
 
+        setIsEmpty(prevErrors => ({
+            ...prevErrors, 
+            [name]: value === ''
+        }))
     }
+
+    const validation = () => {
+        const { name, lastName, email, password } = isEmpty
+
+        return (name || lastName || email || password)
+    }
+    
+    useEffect(() => {
+        setBtnDisabled(validation())
+    }, [isEmpty])
 
   return (
     <div className='sign-up-container'>
@@ -49,8 +72,12 @@ const SignUpForm = () => {
                 { error.password && <MustBeFilledError /> }
             </div>
             <div className="button-container">
-                <Button style={{ width: '200px' }}
-                buttonStyle='btn--outline' buttonSize='btn--large' >Sign Up</Button>
+                <Button 
+                style={{ width: '200px' }}
+                type='submit'
+                buttonStyle='btn--outline' 
+                buttonSize='btn--large' 
+                disabled={ btnDisabled }>Sign Up</Button>
             </div>
         </form>
     </div>
