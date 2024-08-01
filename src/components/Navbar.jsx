@@ -24,7 +24,7 @@ function Navbar() {
         <nav className='navbar'>
             <div className='navbar-container'>
                 <Link to="/" className='navbar-logo'  onClick={() => setClick(false)} >
-                  TRVL <i className='fab fa-typo3'></i>
+                  TRVL <i className='fa-solid fa-route'></i>
                 </Link>
                 <div className="menu-icon" onClick={() => setClick(!click)}>
                   <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>

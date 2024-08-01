@@ -12,7 +12,6 @@
     background-color: var(--primary);
     color: #242424;
     border: 1px solid var(--primary);
-
 }
 .btn--outline {
     background-color: transparent;
@@ -29,6 +28,9 @@
     padding: 10px 15px;
     font-size: 20px;
     font-weight: 600;
+}
+.btn--xxl {
+    width: 400px;
 }
 .btn--medium:hover,
 .btn--large:hover {

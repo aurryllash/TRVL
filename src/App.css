@@ -49,16 +49,6 @@
 
 
   }
-  @media screen and (max-width: 820px) {
-    .sign-up {
-      height: 120vh;
-    }
-  }
-  @media screen and (max-height: 550px) {
-    .sign-up {
-      height: 170vh;
-    }
-  }
   .error-container {
     background-color: rgb(226, 226, 226);
 

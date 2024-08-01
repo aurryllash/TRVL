@@ -64,7 +64,7 @@ const Footer = () => {
             <div className="social-media-wrap">
                 <div className="footer-logo">
                     <Link className='social-logo'>
-                    TRVL <i className="fab fa-typo3"></i>
+                    TRVL <i className="fa-solid fa-route"></i>
                     </Link>
                 </div>
                 <small className='website-rights'>TRVL © 2024</small>
