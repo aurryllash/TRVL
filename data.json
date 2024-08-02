@@ -1,32 +1,55 @@
-[
+{
+  "images": [
     {
       "src": "./public/img-9.jpg",
       "text": "Explore the hidden waterfall deep inside the Amazon jungle",
       "label": "Adventure",
-      "path": "/services"
+      "path": "/services",
+      "id": "42b5"
     },
     {
       "src": "./public/img-2.jpg",
       "text": "Travel through the Islands of Bali in a Private Cruise",
       "label": "Luxury",
-      "path": "/services"
+      "path": "/services",
+      "id": "ed43"
     },
     {
       "src": "./public/img-3.jpg",
       "text": "Set sail in the Atlantic Ocean visiting Uncharted Waters",
       "label": "Mystery",
-      "path": "/services"
+      "path": "/services",
+      "id": "3663"
     },
     {
       "src": "./public/img-4.jpg",
       "text": "Experience Football on Top of the Himilayan Mountains",
       "label": "Adventure",
-      "path": "/services"
+      "path": "/services",
+      "id": "0028"
     },
     {
       "src": "./public/img-7.jpg",
       "text": "Ride through the Sahara Desert on a guided camel tour",
       "label": "Adventure",
-      "path": "/services"
+      "path": "/services",
+      "id": "99e3"
+    }
+  ],
+  "users": [
+    {
+      "id": "fb06c042-69b0-4f41-a2d6-af14bf13f67a",
+      "name": "Lasha",
+      "lastName": "Tsiklauri",
+      "email": "lashatsiklauri@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": "adebf3a6-1e8e-4941-9128-ec3c5698293d",
+      "name": "Gio",
+      "lastName": "Asatiani",
+      "email": "asatiani@gmailcom",
+      "password": "1233214554"
     }
   ]
+}

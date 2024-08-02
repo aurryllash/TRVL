@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './SignUpForm.css'
 import Button from './Button'
+import { v4 as uuidv4 } from 'uuid';
 
 const MustBeFilledError = () => {
     return <p style={{ color: 'rgb(253, 82, 82)', fontSize: '15px', marginTop: '5px' }}>Section must be filled!</p>
@@ -15,15 +16,15 @@ const SignUpForm = () => {
         password: false
     })
     const [isEmpty, setIsEmpty] = useState({
-        name: true,
-        lastName: true,
-        email: true,
-        password: true
+        name: '',
+        lastName: '',
+        email: '',
+        password: ''
     })
 
     const [btnDisabled, setBtnDisabled] = useState(false)
 
-    const CheckIfIsFilled = (event) => {
+    const handleInputChange = (event) => {
         const { name, value } = event.target
 
         setError(prevErrors => ({
@@ -33,18 +34,35 @@ const SignUpForm = () => {
 
         setIsEmpty(prevErrors => ({
             ...prevErrors, 
-            [name]: value === ''
+            [name]: value
         }))
     }
+    const handleSubmit = async () => {
+        try {
+            const newState = {
+                ...isEmpty,
+                id: uuidv4()
+            }
 
-    const validation = () => {
-        const { name, lastName, email, password } = isEmpty
+            setIsEmpty(newState)
 
-        return (name || lastName || email || password)
+            const response = await fetch('http://localhost:3000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newState)
+            })
+            console.log(response)
+        } catch(error) {
+            console.log(error)
+        }
+        
     }
     
     useEffect(() => {
-        setBtnDisabled(validation())
+        const { name, lastName, email, password } = isEmpty
+        setBtnDisabled(name == '' || lastName == '' || email == '' || password == '')
     }, [isEmpty])
 
   return (
@@ -53,22 +71,22 @@ const SignUpForm = () => {
         <form className="sign-up-form">
             <div className="input-field">
                 <label>Name: <sup>*</sup> </label>
-                <input type="text" name='name' placeholder='john...' onBlur={CheckIfIsFilled} />
+                <input type="text" name='name' placeholder='john...' onBlur={handleInputChange} />
                 { error.name && <MustBeFilledError /> }
             </div>
             <div className="input-field">
                 <label>LastName: <sup>*</sup> </label>
-                <input type="text" name='lastName' placeholder='Yanker...' onBlur={CheckIfIsFilled} />
+                <input type="text" name='lastName' placeholder='Yanker...' onBlur={handleInputChange} />
                 { error.lastName && <MustBeFilledError /> }
             </div>
             <div className="input-field">
                 <label>Email: <sup>*</sup> </label>
-                <input type="email" name='email' placeholder='john@gmail.com' onBlur={CheckIfIsFilled} />
+                <input type="email" name='email' placeholder='john@gmail.com' onBlur={handleInputChange} />
                 { error.email && <MustBeFilledError /> }
             </div>
             <div className="input-field">
                 <label>Password: <sup>*</sup> </label>
-                <input type="password" name='password' placeholder='Fh56h7hj/!' onBlur={CheckIfIsFilled} />
+                <input type="password" name='password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
                 { error.password && <MustBeFilledError /> }
             </div>
             <div className="button-container">
@@ -77,7 +95,8 @@ const SignUpForm = () => {
                 type='submit'
                 buttonStyle='btn--outline' 
                 buttonSize='btn--large' 
-                disabled={ btnDisabled }>Sign Up</Button>
+                disabled={ btnDisabled }
+                onClick={handleSubmit}>Sign Up</Button>
             </div>
         </form>
     </div>

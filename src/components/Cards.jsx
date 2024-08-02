@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardItem from './CardItem'
 import './Cards.css'
-import data from '../../data.json'
+// import data from '../../data.json'
 
 function Cards() {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:3000/images')
+            .then(res => res.json())
+            .then(res => {
+                setData(res)
+                console.log(res)
+            }) 
+            .catch(error => console.log(error))
+    }, [])
 
   return (
     <div className='cards'>
