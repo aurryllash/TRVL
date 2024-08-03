@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import CardItem from './CardItem'
 import './Cards.css'
 // import data from '../../data.json'
@@ -14,6 +14,7 @@ function Cards() {
                 console.log(res)
             }) 
             .catch(error => console.log(error))
+
     }, [])
 
   return (

@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef  } from 'react'
 import './SignUpForm.css'
 import Button from './Button'
 import { v4 as uuidv4 } from 'uuid';
 
-const MustBeFilledError = () => {
-    return <p style={{ color: 'rgb(253, 82, 82)', fontSize: '15px', marginTop: '5px' }}>Section must be filled!</p>
+const MustBeFilledError = ({ name }) => {
+    return <p 
+    style={{ color: 'rgb(253, 82, 82)', fontSize: '15px', marginTop: '5px' }}
+    >{name} must be filled!</p>
 }
 
 const SignUpForm = () => {
 
     const [error, setError] = useState({
-        name: false,
-        lastName: false,
-        email: false,
-        password: false
+        name: '',
+        lastName: '',
+        email: '',
+        password: ''
     })
     const [isEmpty, setIsEmpty] = useState({
         name: '',
@@ -29,7 +31,7 @@ const SignUpForm = () => {
 
         setError(prevErrors => ({
             ...prevErrors, 
-            [name]: value === ''
+            [name]: value === '' ? `${name}` : ''
         }))
 
         setIsEmpty(prevErrors => ({
@@ -37,6 +39,7 @@ const SignUpForm = () => {
             [name]: value
         }))
     }
+
     const handleSubmit = async () => {
         try {
             const newState = {
@@ -72,22 +75,22 @@ const SignUpForm = () => {
             <div className="input-field">
                 <label>Name: <sup>*</sup> </label>
                 <input type="text" name='name' placeholder='john...' onBlur={handleInputChange} />
-                { error.name && <MustBeFilledError /> }
+                { error.name && <MustBeFilledError name={error.name} /> }
             </div>
             <div className="input-field">
                 <label>LastName: <sup>*</sup> </label>
                 <input type="text" name='lastName' placeholder='Yanker...' onBlur={handleInputChange} />
-                { error.lastName && <MustBeFilledError /> }
+                { error.lastName && <MustBeFilledError  name={error.lastName} /> }
             </div>
             <div className="input-field">
                 <label>Email: <sup>*</sup> </label>
                 <input type="email" name='email' placeholder='john@gmail.com' onBlur={handleInputChange} />
-                { error.email && <MustBeFilledError /> }
+                { error.email && <MustBeFilledError  name={error.email} /> }
             </div>
             <div className="input-field">
                 <label>Password: <sup>*</sup> </label>
                 <input type="password" name='password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
-                { error.password && <MustBeFilledError /> }
+                { error.password && <MustBeFilledError  name={error.password} /> }
             </div>
             <div className="button-container">
                 <Button 
