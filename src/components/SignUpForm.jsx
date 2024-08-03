@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const MustBeFilledError = ({ name }) => {
     return <p 
     style={{ color: 'rgb(253, 82, 82)', fontSize: '15px', marginTop: '5px' }}
-    >{name} must be filled!</p>
+    >{name}</p>
 }
 
 const SignUpForm = () => {
@@ -29,10 +29,24 @@ const SignUpForm = () => {
     const handleInputChange = (event) => {
         const { name, value } = event.target
 
-        setError(prevErrors => ({
-            ...prevErrors, 
-            [name]: value === '' ? `${name}` : ''
-        }))
+        // setError(prevErrors => ({
+        //     ...prevErrors, 
+        //     [name]: value === '' ? `${name}` : ''
+        // }))
+        setError(prevErrors => {
+            const newState = { ...prevErrors }
+
+            if(value === '') {
+                newState[name] = `${name} must be filled!` 
+                
+            } else if(name === 'password') {
+                newState[name] = `${name} must be at least 5 characther`
+            } else {
+                newState[name] = ''
+            }
+
+            return newState
+        })
 
         setIsEmpty(prevErrors => ({
             ...prevErrors, 
