@@ -28,11 +28,7 @@ const SignUpForm = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-
-        // setError(prevErrors => ({
-        //     ...prevErrors, 
-        //     [name]: value === '' ? `${name}` : ''
-        // }))
+        
         setError(prevErrors => {
             const newState = { ...prevErrors }
 
@@ -44,7 +40,6 @@ const SignUpForm = () => {
             } else {
                 newState[name] = ''
             }
-
             return newState
         })
 
@@ -88,22 +83,22 @@ const SignUpForm = () => {
         <form className="sign-up-form">
             <div className="input-field">
                 <label>Name: <sup>*</sup> </label>
-                <input type="text" name='name' placeholder='john...' onBlur={handleInputChange} />
+                <input type="text" name='Name' placeholder='john...' onBlur={handleInputChange} />
                 { error.name && <MustBeFilledError name={error.name} /> }
             </div>
             <div className="input-field">
                 <label>LastName: <sup>*</sup> </label>
-                <input type="text" name='lastName' placeholder='Yanker...' onBlur={handleInputChange} />
+                <input type="text" name='LastName' placeholder='Yanker...' onBlur={handleInputChange} />
                 { error.lastName && <MustBeFilledError  name={error.lastName} /> }
             </div>
             <div className="input-field">
                 <label>Email: <sup>*</sup> </label>
-                <input type="email" name='email' placeholder='john@gmail.com' onBlur={handleInputChange} />
+                <input type="email" name='Email' placeholder='john@gmail.com' onBlur={handleInputChange} />
                 { error.email && <MustBeFilledError  name={error.email} /> }
             </div>
             <div className="input-field">
                 <label>Password: <sup>*</sup> </label>
-                <input type="password" name='password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
+                <input type="password" name='Password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
                 { error.password && <MustBeFilledError  name={error.password} /> }
             </div>
             <div className="button-container">

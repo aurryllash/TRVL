@@ -6,6 +6,7 @@ import Home from './components/pages/Home'
 import Products from './components/pages/Products';
 import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
+import SignIn from './components/pages/SignIn'
 import Footer from './components/Footer';
 import Error from './components/pages/Error';
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/services" element={<Services />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path='*' element={ <Error /> } />
         </Routes>
         <Footer />
