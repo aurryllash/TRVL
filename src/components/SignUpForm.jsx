@@ -12,30 +12,28 @@ const MustBeFilledError = ({ name }) => {
 const SignUpForm = () => {
 
     const [error, setError] = useState({
-        name: '',
-        lastName: '',
-        email: '',
-        password: ''
+        Name: '',
+        LastName: '',
+        Email: '',
+        Password: ''
     })
     const [isEmpty, setIsEmpty] = useState({
-        name: '',
-        lastName: '',
-        email: '',
-        password: ''
+        Name: '',
+        LastName: '',
+        Email: '',
+        Password: ''
     })
 
     const [btnDisabled, setBtnDisabled] = useState(false)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-        
         setError(prevErrors => {
             const newState = { ...prevErrors }
 
             if(value === '') {
                 newState[name] = `${name} must be filled!` 
-                
-            } else if(name === 'password') {
+            } else if(name === 'Password') {
                 newState[name] = `${name} must be at least 5 characther`
             } else {
                 newState[name] = ''
@@ -43,8 +41,8 @@ const SignUpForm = () => {
             return newState
         })
 
-        setIsEmpty(prevErrors => ({
-            ...prevErrors, 
+        setIsEmpty(prev => ({
+            ...prev, 
             [name]: value
         }))
     }
@@ -73,8 +71,9 @@ const SignUpForm = () => {
     }
     
     useEffect(() => {
-        const { name, lastName, email, password } = isEmpty
-        setBtnDisabled(name == '' || lastName == '' || email == '' || password == '')
+        const { Name, LastName, Email, Password } = isEmpty
+        setBtnDisabled(Name == '' || LastName == '' || Email == '' || Password == '')
+        console.log(btnDisabled)
     }, [isEmpty])
 
   return (
@@ -84,22 +83,22 @@ const SignUpForm = () => {
             <div className="input-field">
                 <label>Name: <sup>*</sup> </label>
                 <input type="text" name='Name' placeholder='john...' onBlur={handleInputChange} />
-                { error.name && <MustBeFilledError name={error.name} /> }
+                { error.Name && <MustBeFilledError name={error.Name} /> }
             </div>
             <div className="input-field">
                 <label>LastName: <sup>*</sup> </label>
                 <input type="text" name='LastName' placeholder='Yanker...' onBlur={handleInputChange} />
-                { error.lastName && <MustBeFilledError  name={error.lastName} /> }
+                { error.LastName && <MustBeFilledError  name={error.LastName} /> }
             </div>
             <div className="input-field">
                 <label>Email: <sup>*</sup> </label>
                 <input type="email" name='Email' placeholder='john@gmail.com' onBlur={handleInputChange} />
-                { error.email && <MustBeFilledError  name={error.email} /> }
+                { error.Email && <MustBeFilledError  name={error.Email} /> }
             </div>
             <div className="input-field">
                 <label>Password: <sup>*</sup> </label>
                 <input type="password" name='Password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
-                { error.password && <MustBeFilledError  name={error.password} /> }
+                { error.Password && <MustBeFilledError  name={error.Password} /> }
             </div>
             <div className="button-container">
                 <Button 
