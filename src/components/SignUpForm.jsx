@@ -35,7 +35,7 @@ const SignUpForm = () => {
 
             if(value === '') {
                 newState[name] = `${name} must be filled!` 
-            } else if(name === 'Password') {
+            } else if(name === 'Password' && value.length < 5) {
                 newState[name] = `${name} must be at least 5 characther`
             } else {
                 newState[name] = ''
@@ -84,7 +84,7 @@ const SignUpForm = () => {
     
     useEffect(() => {
         const { Name, LastName, Email, Password } = isEmpty
-        setBtnDisabled(Name == '' || LastName == '' || Email == '' || Password == '')
+        setBtnDisabled(Name == '' || LastName == '' || Email == '' || Password == '' || Password.length < 5)
         console.log(btnDisabled)
     }, [isEmpty])
 
@@ -109,7 +109,7 @@ const SignUpForm = () => {
             </div>
             <div className="input-field">
                 <label>Password: <sup>*</sup> </label>
-                <input type="password" name='Password' placeholder='Fh56h7hj/!' onBlur={handleInputChange} />
+                <input type="password" name='Password' placeholder='Fh56h7hj/!' onChange={handleInputChange} />
                 { error.Password && <MustBeFilledError  name={error.Password} /> }
             </div>
             <div className="button-container">
