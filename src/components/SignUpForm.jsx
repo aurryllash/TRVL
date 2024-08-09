@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef  } from 'react'
 import './SignUpForm.css'
 import Button from './Button'
 import { v4 as uuidv4 } from 'uuid';
+import auth from './Firebase'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const MustBeFilledError = ({ name }) => {
     return <p 
@@ -56,14 +58,24 @@ const SignUpForm = () => {
 
             setIsEmpty(newState)
 
-            const response = await fetch('http://localhost:3000/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newState)
-            })
-            console.log(response)
+            // const response = await fetch('http://localhost:3000/users', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(newState)
+            // })
+            createUserWithEmailAndPassword(auth, isEmpty.Email, isEmpty.Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(error)
+              });
+
         } catch(error) {
             console.log(error)
         }

@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import Button from './Button'
 import './SignInForm.css'
+import auth from './Firebase'
+
 
 const SignInForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(email, password)
     }
   return (
     <div className='sign-in-container'>
