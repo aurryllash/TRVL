@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef  } from 'react'
+import React, { useState, useEffect, useRer } from 'react'
+import { Link } from 'react-router-dom'
 import './SignUpForm.css'
 import Button from './Button'
 import { v4 as uuidv4 } from 'uuid';
@@ -85,7 +86,6 @@ const SignUpForm = () => {
     useEffect(() => {
         const { Name, LastName, Email, Password } = isEmpty
         setBtnDisabled(Name == '' || LastName == '' || Email == '' || Password == '' || Password.length < 5)
-        console.log(btnDisabled)
     }, [isEmpty])
 
   return (
@@ -120,6 +120,9 @@ const SignUpForm = () => {
                 buttonSize='btn--large' 
                 disabled={ btnDisabled }
                 onClick={handleSubmit}>Sign Up</Button>
+            </div>
+            <div className="options">
+                <p>Already have an account? <Link to='/sign-in' className='sign-in-link'>Sign in</Link></p>
             </div>
         </form>
     </div>
